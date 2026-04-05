@@ -204,7 +204,7 @@
     max-width: 1300px; margin: 0 auto;
     padding: 8rem 2rem 4rem;
     display: grid; grid-template-columns: 1fr 1fr;
-    align-items: center; gap: 4rem;
+    align-items: center; gap: 3rem;
   }
 
   .hero-text { animation: fadeUp 1s ease forwards; }
@@ -1171,6 +1171,52 @@
     .facilities-grid { grid-template-columns: 1fr; }
     section { padding: 3rem 1.2rem; }
   }
+
+  /* ===== HERO SLIDESHOW ===== */
+  .hero-slideshow {
+    position: relative;
+    width: 100%;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+    border: 2px solid rgba(201,168,76,0.3);
+  }
+  .hs-track { position: relative; width: 100%; }
+  .hs-slide { display: none; position: relative; }
+  .hs-slide.hs-active { display: block; animation: hsFade 0.6s ease; }
+  @keyframes hsFade { from { opacity:0; transform:scale(1.03); } to { opacity:1; transform:scale(1); } }
+  .hs-slide img {
+    width: 100%; height: 380px;
+    object-fit: cover; display: block;
+  }
+  .hs-label {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    background: linear-gradient(to top, rgba(26,10,10,0.85), transparent);
+    color: white; padding: 1.5rem 1rem 0.8rem;
+    font-size: 0.85rem; font-weight: 600;
+    letter-spacing: 0.08em; text-transform: uppercase;
+  }
+  .hs-arrow {
+    position: absolute; top: 50%; transform: translateY(-50%);
+    width: 40px; height: 40px; border-radius: 50%;
+    background: rgba(139,26,26,0.85); border: 1.5px solid rgba(201,168,76,0.5);
+    color: white; font-size: 1.4rem; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.2s; z-index: 5;
+  }
+  .hs-arrow:hover { background: #8B1A1A; border-color: #C9A84C; }
+  .hs-prev { left: 10px; }
+  .hs-next { right: 10px; }
+  .hs-dots {
+    position: absolute; bottom: 12px; left: 50%; transform: translateX(-50%);
+    display: flex; gap: 6px; z-index: 5;
+  }
+  .hs-dot {
+    width: 9px; height: 9px; border-radius: 50%;
+    background: rgba(255,255,255,0.5); border: none; cursor: pointer;
+    transition: all 0.25s; padding: 0;
+  }
+  .hs-dot.hs-dot-active { background: #C9A84C; transform: scale(1.35); }
 </style>
 
 </head>
@@ -1227,7 +1273,7 @@
         <div class="hero-actions">
           <a href="https://docs.google.com/forms/d/e/1FAIpQLSepjWgtKY2aS3qegJiktwF-Wnm6htNqCgF1H4mlnaYSe5C-XQ/viewform"
           class="btn-primary" target="_blank">Register Now For Entrance Examination</a>
-          <a href="javascript:void(0)" class="btn-outline" href="/aboutus/">Discover More</a>
+          <a href="javascript:void(0)" class="btn-outline" href="aboutus/">Discover More</a>
         </div>
       </div>
       <div class="hero-visual">
@@ -1300,7 +1346,7 @@
       </div>
       <div style="margin-top:2rem;display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
         <a href="https://wa.me/2348132135930" target="_blank" class="btn-primary">Chat on WhatsApp</a>
-        <a href="/admissions/" class="btn-outline" style="color:white;border-color:rgba(255,255,255,0.4);">Apply Now →</a>
+        <a href="admissions/" class="btn-outline" style="color:white;border-color:rgba(255,255,255,0.4);">Apply Now →</a>
       </div>
     </div>
   </section>
@@ -1354,7 +1400,7 @@
               <p>Striving for the highest in every endeavour</p>
             </div>
           </div>
-          <a href="javascript:void(0)" class="btn-primary" style="margin-top:2rem;display:inline-block;" href="/aboutus/">Read Our Full Story</a>
+          <a href="javascript:void(0)" class="btn-primary" style="margin-top:2rem;display:inline-block;" href="aboutus/">Read Our Full Story</a>
         </div>
       </div>
     </div>
@@ -1483,7 +1529,7 @@
       <h2>Ready to Join the Al-Ameen Family?</h2>
       <p>We welcome students from Creche through Senior Secondary. Begin your journey today.</p>
       <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
-        <a href="javascript:void(0)" class="btn-outline" href="/admissions/" style="color:white;border-color:rgba(255,255,255,0.5);">View Admission Process</a>
+        <a href="javascript:void(0)" class="btn-outline" href="admissions/" style="color:white;border-color:rgba(255,255,255,0.5);">View Admission Process</a>
         <a href="https://wa.me/2348132135930" target="_blank" class="btn-primary" style="background:white;color:var(--crimson);border-color:white;">Chat on WhatsApp</a>
       </div>
     </div>
@@ -1543,7 +1589,7 @@
       <ul>
         <li><a href="https://wa.me/2348132135930" target="_blank">+234 8132135930</a></li>
         <li><a href="https://wa.me/2349124231021" target="_blank">+234 9124231021</a></li>
-        <li><a href="mailto:alameenintegratedcollege@gmail.com">Email Us</a></li>
+        <li><a href="/cdn-cgi/l/email-protection#9afbf6fbf7fffff4f3f4eefffde8fbeefffef9f5f6f6fffdffdafdf7fbf3f6b4f9f5f7">Email Us</a></li>
         <li><a>Abalabi Town, Ewekoro Ogun State</a></li>
       </ul>
     </div>
@@ -1566,8 +1612,39 @@
   function openLightbox(el){var src=(typeof el==='string')?el:el.querySelector('img').src;document.getElementById('lightboxImg').src=src;document.getElementById('lightbox').classList.add('open');document.body.style.overflow='hidden';}
   function closeLightbox(){document.getElementById('lightbox').classList.remove('open');document.body.style.overflow='';document.getElementById('lightboxImg').src='';}
 </script>
+
 <script>
-  (function(){var hsTotal=7,hsCurrent=0,hsTimer=null;function hsShow(n){var s=document.querySelectorAll('.hs-slide'),d=document.querySelectorAll('.hs-dot');if(!s.length)return;s[hsCurrent].classList.remove('hs-active');d[hsCurrent].classList.remove('hs-dot-active');hsCurrent=(n+hsTotal)%hsTotal;s[hsCurrent].classList.add('hs-active');d[hsCurrent].classList.add('hs-dot-active');}window.hsNext=function(){clearInterval(hsTimer);hsShow(hsCurrent+1);hsStartAuto();};window.hsPrev=function(){clearInterval(hsTimer);hsShow(hsCurrent-1);hsStartAuto();};window.hsGoTo=function(n){clearInterval(hsTimer);hsShow(n);hsStartAuto();};function hsStartAuto(){hsTimer=setInterval(function(){hsShow(hsCurrent+1);},3500);}var t=document.querySelector('.hs-track');if(t){var x=0;t.addEventListener('touchstart',function(e){x=e.touches[0].clientX;},{passive:true});t.addEventListener('touchend',function(e){var d=x-e.changedTouches[0].clientX;if(Math.abs(d)>40){clearInterval(hsTimer);hsShow(hsCurrent+(d>0?1:-1));hsStartAuto();}},{passive:true});}hsStartAuto();})();
+  function toggleMenu(){var m=document.getElementById('mobileMenu');m.classList.contains('open')?m.classList.remove('open'):m.classList.add('open');}
+  function closeMenu(){var m=document.getElementById('mobileMenu');if(m)m.classList.remove('open');}
+  document.addEventListener('click',function(e){var m=document.getElementById('mobileMenu'),h=document.querySelector('.hamburger');if(m&&h&&!m.contains(e.target)&&!h.contains(e.target))m.classList.remove('open');});
+  function toggleFaq(el){var item=el.parentElement,isOpen=item.classList.contains('open');document.querySelectorAll('.faq-item').forEach(function(i){i.classList.remove('open');});if(!isOpen)item.classList.add('open');}
+  function filterGallery(cat,btn){document.querySelectorAll('.filter-btn').forEach(function(b){b.classList.remove('active');});btn.classList.add('active');document.querySelectorAll('.gallery-item').forEach(function(item){item.style.display=(cat==='all'||item.dataset.cat===cat)?'block':'none';});}
+  function openLightbox(el){var src=(typeof el==='string')?el:el.querySelector('img').src;document.getElementById('lightboxImg').src=src;document.getElementById('lightbox').classList.add('open');document.body.style.overflow='hidden';}
+  function closeLightbox(){document.getElementById('lightbox').classList.remove('open');document.body.style.overflow='';document.getElementById('lightboxImg').src='';}
+  // HERO SLIDESHOW
+  (function(){
+    var hsTotal=7,hsCurrent=0,hsTimer=null;
+    function hsShow(n){
+      var slides=document.querySelectorAll('.hs-slide'),dots=document.querySelectorAll('.hs-dot');
+      if(!slides.length)return;
+      slides[hsCurrent].classList.remove('hs-active');
+      dots[hsCurrent].classList.remove('hs-dot-active');
+      hsCurrent=(n+hsTotal)%hsTotal;
+      slides[hsCurrent].classList.add('hs-active');
+      dots[hsCurrent].classList.add('hs-dot-active');
+    }
+    window.hsNext=function(){clearInterval(hsTimer);hsShow(hsCurrent+1);hsStartAuto();};
+    window.hsPrev=function(){clearInterval(hsTimer);hsShow(hsCurrent-1);hsStartAuto();};
+    window.hsGoTo=function(n){clearInterval(hsTimer);hsShow(n);hsStartAuto();};
+    function hsStartAuto(){hsTimer=setInterval(function(){hsShow(hsCurrent+1);},3500);}
+    var track=document.querySelector('.hs-track');
+    if(track){
+      var hsX=0;
+      track.addEventListener('touchstart',function(e){hsX=e.touches[0].clientX;},{passive:true});
+      track.addEventListener('touchend',function(e){var d=hsX-e.changedTouches[0].clientX;if(Math.abs(d)>40){clearInterval(hsTimer);hsShow(hsCurrent+(d>0?1:-1));hsStartAuto();}},{passive:true});
+    }
+    hsStartAuto();
+  })();
 </script>
 </body>
 </html>
